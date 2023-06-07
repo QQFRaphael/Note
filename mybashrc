@@ -1,0 +1,49 @@
+ulimit  -m unlimited
+ulimit  -d unlimited
+ulimit  -v unlimited
+ulimit  -t unlimited
+ulimit  -s unlimited
+set +o noclobber                
+
+export DISPLAY=`cat /etc/resolv.conf | grep nameserver | awk '{print $2}'`:0
+
+export AllSoft=/home/qqf/allsoft
+
+export PATH=${AllSoft}/anaconda3/bin:${PATH}
+#source /home/qqf/intel/oneapi/setvars.sh >& /dev/null
+
+#export WRF_DIR=/mnt/d/Model/WRFV4.4-real
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+
+export NCARG_ROOT=${AllSoft}/ncl
+export NCARG_LIB=${NCARG_ROOT}/lib
+export NCARG_INC=${NCARG_ROOT}/include
+export PATH=${NCARG_ROOT}/bin:${PATH}
+export LD_LIBRARY_PATH=${NCARG_ROOT}/lib:${LD_LIBRARY_PATH}
+export INCLUDE=${NCARG_INC}/include:${INCLUDE}
+export GEODIAG_ROOT=${AllSoft}/geodiag
+export GEODIAG_PACKAGES=${GEODIAG_ROOT}/packages
+export GEODIAG_TOOLS=${GEODIAG_ROOT}/tools
+export PATH=${PATH}:${GEODIAG_ROOT}
+
+export NETCDF=${AllSoft}/netcdf
+export LD_LIBRARY_PATH=${NETCDF}/lib:${LD_LIBRARY_PATH}
+export INCLUDE=${NETCDF}/include:${INCLUDE}
+export NETCDF_INC=${NETCDF}/include
+export NETCDF_LIB=${NETCDF}/lib
+export INC_NETCDF=${NETCDF}/include
+export LIB_NETCDF=${NETCDF}/lib
+export PATH=${NETCDF}/bin:${PATH}
+
+export JASPER=${AllSoft}/jasper
+export LD_LIBRARY_PATH=${JASPER}/lib:${LD_LIBRARY_PATH}
+export PATH=${JASPER}/bin:${PATH}
+export INCLUDE=${JASPER}/include:${INCLUDE}
+
+export PATH=${AllSoft}/matlab/bin:${PATH}
+alias mrun='ML() { matlab -nodesktop -nosplash -nodisplay -r "run(\""'"\$1"'"\");exit;"; }; ML'
+
+alias covt='convert -density 1000 -trim '
+
+export PATH=/usr/local/cuda-11.3/bin:${PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda-11.3/lib64:${LD_LIBRARY_PATH}
